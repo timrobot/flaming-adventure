@@ -15,16 +15,25 @@ def main():
   the_man = map(lambda s: pygame.transform.scale(s, (int(s.get_width() * scalefactor), int(s.get_height() * scalefactor))), the_man)
   the_man = map(lambda s: s.subsurface(pygame.Rect(0, 0, s.get_width(), s.get_height() - 20)), the_man)
   the_man = map(lambda s: s.convert_alpha(), the_man)
-  for img in the_man:
-    img.set_colorkey((255, 255, 255), pygame.RLEACCEL)
+  def colorkey_filter(surf, color):
+    for x in range(surf.get_width()):
+      for y in range(surf.get_height()):
+        if surf.get_at((x, y))[0] == color[0] and \
+           surf.get_at((x, y))[1] == color[1] and \
+           surf.get_at((x, y))[2] == color[2]:
+          surf.set_at((x, y), (color[0], color[1], color[2], 0))
+  for i in range(len(the_man)):
+    colorkey_filter(the_man[i], (255, 255, 255))
+
   # states
   y = 0
-  vx = -3
+  vx = -4
   key_queue = []
   jump = False
   vy = 0
-  acc = -2
+  acc = -1
   objs = [ pygame.Rect(640, 240 - 50, 50, 50) ]
+  man_mode = 0
 
   while True:
     # catch quit
@@ -53,19 +62,23 @@ def main():
 
     # draw the boxes
     for obj in objs:
+      if obj.x + obj.w < 0:
+        obj.x = 640
+    for obj in objs:
       obj.x += vx
-      pygame.draw.rect(screen, (255, 0, 0), obj, 1)
+      pygame.draw.rect(screen, (255, 0, 0), obj, 0)
     
     # draw the man
-    running_man = the_man[0]
+    running_man = the_man[man_mode]
     screen.blit(running_man, (50, 240 - running_man.get_height() - y))
 
     # update
     if vy > 0 or y > 0:
+      man_mode = 0
       y += vy
       vy += acc
     else:
-      the_man = the_man[1:] + [running_man]
+      man_mode = (man_mode + 1) % len(the_man)
       y = 0
       vy = 0
       jump = False

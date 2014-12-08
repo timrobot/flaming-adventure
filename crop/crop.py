@@ -41,21 +41,23 @@ while not selected:
   screen.blit(temp_pic, (0, 0))
   currpos = pygame.mouse.get_pos()
   if onclick:
-    selection_box = pygame.Surface((currpos[0] - startpos[0], currpos[1] - startpos[1])).convert_alpha()
-    selection_box.fill((0, 0, 255))
-    selection_box.set_alpha(128)
-    screen.blit(selection_box, startpos)
+    x1 = min([startpos[0], currpos[0]])
+    y1 = min([startpos[1], currpos[1]])
+    x2 = max([startpos[0], currpos[0]])
+    y2 = max([startpos[1], currpos[1]])
+    selection_box = pygame.Surface((x2 - x1, y2 - y1))
+    selection_box = selection_box.convert_alpha()
+    selection_box.fill((0, 0, 255, 128))
+    screen.blit(selection_box, (x1, y1))
   pygame.display.flip()
   clock.tick(40)
 
-x1 = startpos[0] * scale_factor
-y1 = startpos[1] * scale_factor
-x2 = endpos[0] * scale_factor
-y2 = endpos[1] * scale_factor
+x1 = min([startpos[0], endpos[0]]) * scale_factor
+y1 = min([startpos[1], endpos[1]]) * scale_factor
+x2 = max([startpos[0], endpos[0]]) * scale_factor
+y2 = max([startpos[1], endpos[1]]) * scale_factor
 w = x2 - x1
 h = y2 - y1
-
-print x1, y1, x2, y2, w, h
 
 new_pic = pic.subsurface(pygame.Rect(x1, y1, w, h))
 pygame.image.save(new_pic, sys.argv[2])
