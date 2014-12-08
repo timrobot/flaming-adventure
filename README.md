@@ -1,7 +1,7 @@
 flaming-adventure
 =================
 
-Where adventure burn and die.
+Where adventures burn and die.
 
 All extra projects and random bits of code that I generate will sometimes be pushed here.
 
