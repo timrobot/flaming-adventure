@@ -9,6 +9,7 @@ if len(sys.argv) != 3:
   print "Usage: {0} [source pic] [dest pic]".format(sys.argv[0])
   sys.exit()
 
+# get a pic
 pic = pygame.image.load(sys.argv[1])
 startpos = [-1, -1]
 endpos = [-1, -1]
@@ -39,12 +40,12 @@ while not selected:
 
   screen.fill((0, 0, 0))
   screen.blit(temp_pic, (0, 0))
-  currpos = pygame.mouse.get_pos()
+  endpos = pygame.mouse.get_pos()
   if onclick:
-    x1 = min([startpos[0], currpos[0]])
-    y1 = min([startpos[1], currpos[1]])
-    x2 = max([startpos[0], currpos[0]])
-    y2 = max([startpos[1], currpos[1]])
+    x1 = min([startpos[0], endpos[0]])
+    y1 = min([startpos[1], endpos[1]])
+    x2 = max([startpos[0], endpos[0]])
+    y2 = max([startpos[1], endpos[1]])
     selection_box = pygame.Surface((x2 - x1, y2 - y1))
     selection_box = selection_box.convert_alpha()
     selection_box.fill((0, 0, 255, 128))
