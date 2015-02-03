@@ -3,12 +3,10 @@
 
 #include "Common.h"
 
-typedef void (*void_func)(void);
-
-struct option {
+typedef struct {
   string name;
   SDL_Surface *icon;
-};
+} option_t;
 
 class Menu {
   public:
@@ -16,7 +14,7 @@ class Menu {
     void select();
     void change_option_up();
     void change_option_down();
-    void revert();
+    void deselect();
 };
 
 #endif

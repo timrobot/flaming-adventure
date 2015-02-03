@@ -55,8 +55,11 @@ int main(int argc, char* argv[])
   XMapWindow(display, win);
 
   /* draw a white line */
+#define TCRED     0x00FF0000
+#define TCGREEN   0x0000FF00
+#define TCBLUE    0x000000FF
   int whiteColor = WhitePixel(display, DefaultScreen(display));
-  XSetForeground(display, gc, whiteColor);
+  XSetForeground(display, gc, TCBLUE);
 
   int keep_running = 1;
   XEvent event;

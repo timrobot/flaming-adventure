@@ -1,0 +1,23 @@
+- dual wielder / horse
+- protector / armor
+- archer / dagger
+- mage
+
+(the ability to use stealth)
+
+classes of magic
+- air
+  - jump/dash
+  - blast
+  - vortex
+- fire
+  - single/aoe
+  - aoe spread / dot
+- water/ice
+  - healing
+  - ice
+  - mist
+  - con: slower than air
+- earth
+  - almost unbreakable
+  - structurable
