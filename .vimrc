@@ -1,12 +1,14 @@
 set nocompatible " Make Vim behave in a more useful way. If you set this option in your vimrc file, you should probably put it at the very start. For Compatibility.
 " Note that creating a vimrc file will cause the 'compatible' option to be off by default.
 filetype indent plugin on " Required.
-colorscheme koehler
+" colorscheme koehler
+colorscheme delek
 " Section: Options
 " ----------------
 syntax on " Enable syntax highlighting
 syntax enable
 set autoindent " Copy indent from current line when starting a new line
+set cinoptions=l1 " Let switch-case look normal
 set cmdheight=2 " Number of screen lines to use for the command-line. Helps avoiding hit-enter prompts
 set complete-=i " Searching includes can be slow ~tpope
 set confirm " Instead of failing a command because of unsaved changes
